@@ -18,6 +18,7 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.module.annotations.ReactModule;
+import java.nio.charset.Charset;
 
 import com.facebook.react.bridge.ReadableArray;
 
@@ -84,7 +85,7 @@ public class GzipModule extends ReactContextBaseJavaModule {
     }
     gis.close();
     is.close();
-    return new String(string.toString(), "UTF-8");
+    return new String(string.toString(), Charset.forName("UTF-8"));
   }
 
 }

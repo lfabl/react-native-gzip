@@ -42,11 +42,10 @@ public class GzipModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void inflate(@NonNull final String data, @NonNull final Promise promise) {
     try {
-      final byte[] inputBytes = Base64.decode(data, Base64.DEFAULT);
+      byte[] xdata = data.getBytes("UTF-8");
+      final byte[] inputBytes = Base64.decode(xdata, Base64.DEFAULT);
 
-      byte[] data = inputBytes.getBytes("UTF-8");
-
-      promise.resolve(decompress(data));
+      promise.resolve(decompress(inputBytes));
     } catch (final Throwable ex) {
       promise.reject(ER_FAILURE, ex);
     }

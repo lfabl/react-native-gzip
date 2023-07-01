@@ -18,8 +18,6 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.module.annotations.ReactModule;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
 
 import com.facebook.react.bridge.ReadableArray;
 
@@ -27,7 +25,6 @@ import com.facebook.react.bridge.ReadableArray;
 public class GzipModule extends ReactContextBaseJavaModule {
   public static final String NAME = "Gzip";
   public static final String ER_FAILURE = "ERROR_FAILED";
-  private final Charset UTF8_CHARSET = Charset.forName("UTF-8");
 
   public GzipModule(ReactApplicationContext reactContext) {
     super(reactContext);
@@ -87,7 +84,7 @@ public class GzipModule extends ReactContextBaseJavaModule {
     }
     gis.close();
     is.close();
-    return new String(string.toString(), UTF8_CHARSET);
+    return new String(string.toString(), "UTF-8");
   }
 
 }

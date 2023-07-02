@@ -19,7 +19,7 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.module.annotations.ReactModule;
 import java.nio.charset.Charset;
-import org.apache.commons.io.IOUtils;
+import java.nio.charset.StandardCharsets;
 
 import com.facebook.react.bridge.ReadableArray;
 

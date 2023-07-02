@@ -46,7 +46,7 @@ public class GzipModule extends ReactContextBaseJavaModule {
     try {
       final byte[] inputBytes = Base64.decode(data, Base64.DEFAULT);
 
-      promise.resolve(decompress2(inputBytes));
+      promise.resolve(decompress(inputBytes));
     } catch (final Throwable ex) {
       promise.reject(ER_FAILURE, ex);
     }
@@ -74,20 +74,6 @@ public class GzipModule extends ReactContextBaseJavaModule {
     return compressed;
   }
 
-  public static String decompress2(final byte[] compressed) {
-    if (isNull(compressed) || compressed.length == 0) {
-      return null;
-    }
-
-    try (final GZIPInputStream gzipInput = new GZIPInputStream(new ByteArrayInputStream(compressed));
-          final StringWriter stringWriter = new StringWriter()) {
-      IOUtils.copy(gzipInput, stringWriter, UTF_8);
-      return stringWriter.toString();
-    } catch (IOException e) {
-      throw new UncheckedIOException("Error while decompression!", e);
-    }
-  }
-
   public static String decompress(byte[] compressed) throws IOException {
     final int BUFFER_SIZE = 32;
     ByteArrayInputStream is = new ByteArrayInputStream(compressed);
@@ -100,7 +86,7 @@ public class GzipModule extends ReactContextBaseJavaModule {
     }
     gis.close();
     is.close();
-    return string.toString();
+    return new String(data, StandardCharsets.UTF_8); // string.toString();
   }
 
 }

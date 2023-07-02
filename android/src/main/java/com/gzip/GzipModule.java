@@ -84,9 +84,12 @@ public class GzipModule extends ReactContextBaseJavaModule {
     while ((bytesRead = gis.read(data)) != -1) {
       string.append(new String(data, 0, bytesRead));
     }
+    int read = gis.read(data, 0, data.length);
     gis.close();
     is.close();
-    return string.toString();
+    byte[] result = Arrays.copyOf(data, read);
+    return new String(result, "UTF-8");
+    // return string.toString();
   }
 
 }

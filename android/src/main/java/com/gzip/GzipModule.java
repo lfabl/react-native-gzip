@@ -43,7 +43,7 @@ public class GzipModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void inflate(@NonNull final String data, @NonNull final Promise promise) {
     try {
-      final byte[] inputBytes = Base64.decode(data, Base64.DEFAULT);
+      final byte[] inputBytes = data.getBytes("UTF-8") // Base64.decode(data, Base64.DEFAULT);
 
       promise.resolve(decompress(inputBytes));
     } catch (final Throwable ex) {
@@ -85,7 +85,7 @@ public class GzipModule extends ReactContextBaseJavaModule {
     }
     gis.close();
     is.close();
-    return new String(string.getBytes(), Charset.forName("UTF-8"));
+    return string.toString();
   }
 
 }

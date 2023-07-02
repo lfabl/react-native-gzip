@@ -86,7 +86,7 @@ public class GzipModule extends ReactContextBaseJavaModule {
     }
     gis.close();
     is.close();
-    return new String(string.getBytes("UTF-8"), StandardCharsets.UTF_8); // string.toString();
+    return string.toString();
   }
 
 }
